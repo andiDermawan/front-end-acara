@@ -12,7 +12,7 @@ const RegisterSchema = yup.object().shape({
     username: yup.string().required("Please input your username"),
     email: yup
         .string()
-        .email("Email format is not valid")
+        .email("Email format not valid")
         .required("Please input your email"),
     password: yup
         .string()
@@ -60,9 +60,9 @@ const useRegister = () => {
     const { mutate: mutateRegister, isPending: isPendingRegister } =
         useMutation({
             mutationFn: registerService,
-            onError(error: any) {
+            onError(error) {
                 setError("root", {
-                    message: error.response?.data?.message || error.message,
+                    message: error.message,
                 });
             },
             onSuccess: () => {
